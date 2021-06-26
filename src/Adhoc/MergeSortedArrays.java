@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 public class MergeSortedArrays {
 	public static void main(String[] args) {
-		int[] array1 = {1, 10, 20, 0, 0, 0};
+		int[] array1 = {1, 2, 3, 4, 10, 20, 50, 60, 70, 0, 0, 0};
 		int[] array2 = {5, 10, 20};
-		mergeArraysInOrder(array1, 3, array2, 3);
+		mergeArraysInOrder(array1, 9, array2, 3);
 		System.out.println(Arrays.toString(array1));
 	}
 
@@ -16,7 +16,6 @@ public class MergeSortedArrays {
 		int array2Index = n-1;
 		
 		while (array1Index >= 0 && array2Index >= 0) {
-			System.out.println(array1Index+" "+array2Index);
 			if (array1[array1Index] >= array2[array2Index]) {
 				array1[insertIndex--] = array1[array1Index--];
 			} else array1[insertIndex--] = array2[array2Index--];
