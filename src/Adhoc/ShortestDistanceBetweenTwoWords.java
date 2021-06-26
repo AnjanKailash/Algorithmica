@@ -2,7 +2,7 @@ package Adhoc;
 
 public class ShortestDistanceBetweenTwoWords {
 	public static void main(String[] args) {
-		String[] words = {"Practice", "makes", "coding", "abc", "Practice", "makes", "perfect"};
+		String[] words = {"perfect", "makes", "coding", "abc", "Practice"};//"Practice", "makes", "perfect", "Practice"};
 		/*Assumption both words are present in the array*/
 		String word1 = "Practice";
 		String word2 = "perfect";
@@ -30,21 +30,39 @@ public class ShortestDistanceBetweenTwoWords {
 		
 		minDiff = Math.abs(word1Index - word2Index);
 		
-		//move word1Index and check the difference
-		//then move word2Index and check the difference
+		//move word1Index till word2 is reached twice and one step back and check the difference
+		//then move word2Index till word1 is reached and one step back and check the difference
 		//pick the min difference
 		while (word1Index < words.length && word2Index < words.length) {
-			word1Index++;
-			while (word1Index < words.length && !words[word1Index].equals(word1)) word1Index++;
-			if (word1Index < words.length && word2Index < words.length) {
-				if (Math.abs(word1Index - word2Index) < minDiff) minDiff = Math.abs(word1Index - word2Index);
+
+			while (word1Index < words.length) {
+				int foundIndex = word1Index;
+				word1Index++;
+				if (word1Index < words.length && words[word1Index].equals(word1)) {
+					if (Math.abs(word1Index - word2Index) < minDiff) {
+						minDiff = Math.abs(word1Index - word2Index);
+						foundIndex = word1Index;
+					}
+				} else if (word1Index < words.length && words[word1Index].equals(word2) && word1Index != word2Index) {
+					word1Index = foundIndex;
+					break;
+				}
 			}
 			
-			word2Index++;
-			while (word2Index < words.length && !words[word2Index].equals(word2)) word2Index++;
-			if (word2Index < words.length && word1Index < words.length) {
-				if (Math.abs(word1Index - word2Index) < minDiff) minDiff = Math.abs(word1Index - word2Index);
+			while (word2Index < words.length) {
+				int foundIndex = word2Index;
+				word2Index++;
+				if (word2Index < words.length && words[word2Index].equals(word2)) {
+					if (Math.abs(word1Index - word2Index) < minDiff) {
+						minDiff = Math.abs(word1Index - word2Index);
+						foundIndex = word2Index;
+					}
+				} else if (word2Index < words.length && words[word2Index].equals(word1) && word1Index != word2Index) {
+					word2Index = foundIndex;
+					break;
+				}
 			}
+			
 		}
 
 		return minDiff;
