@@ -1,10 +1,15 @@
-/**
- * 
- * 
- * https://leetcode.com/problems/remove-duplicates-from-sorted-array/submissions/
- * 
- * 
- * class Solution {
+package Adhoc;
+
+public class RemoveDuplicatesArrayAssignment {
+	public static void main(String[] args) {
+		Solution10 sol = new Solution10();
+		int[] nums = {1, 1, 2, 2, 2, 3, 5, 6};
+		int newLength = sol.removeDuplicates(nums);
+		for (int i = 0; i < newLength; i++) System.out.print(nums[i]+" ");
+	}
+}
+
+class Solution10 {
     public int removeDuplicates(int[] nums) {   
         int originalLength = nums.length;
         for (int i = 0; i < nums.length - 1; i++) {
@@ -44,22 +49,4 @@
         }
     }
 }
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- */
+ 
